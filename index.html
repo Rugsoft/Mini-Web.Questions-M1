@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulacro de Examen — MF0491</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div>
+        <span class="badge">Curso DATW_SOC · Módulo 1</span>
+        <h1>Simulacro de Examen MF0491</h1>
+      </div>
+      <p class="subtitle">Programación web en el entorno cliente (UF1841 · UF1842 · UF1843)</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Menú inicial -->
+    <section id="menu-section" class="card" aria-labelledby="menu-title">
+      <h2 id="menu-title">Configurar simulacro (10 preguntas)</h2>
+      <p class="lead">
+        Banco de <strong><span id="total-bank">60</span> preguntas</strong> basadas en tus apuntes de Obsidian.
+        Elige qué unidad quieres practicar y pulsa en generar examen.
+      </p>
+
+      <div class="uf-selector" role="radiogroup" aria-label="Seleccionar unidad formativa">
+        <label class="uf-option">
+          <input type="radio" name="uf" value="ALL" checked>
+          <span class="uf-card">
+            <strong>Todas las UFs (Mixto)</strong>
+            <span>10 preguntas aleatorias de todo el módulo (60 disponibles)</span>
+          </span>
+        </label>
+
+        <label class="uf-option">
+          <input type="radio" name="uf" value="UF1841">
+          <span class="uf-card">
+            <strong>UF1841 — HTML5 y CSS3</strong>
+            <span>Marcas, cascada, box model, Flexbox, Grid y unidades (20 preguntas)</span>
+          </span>
+        </label>
+
+        <label class="uf-option">
+          <input type="radio" name="uf" value="UF1842">
+          <span class="uf-card">
+            <strong>UF1842 — JavaScript, DOM y Multimedia</strong>
+            <span>Formularios, RegEx, DOM, eventos, JSON, localStorage y audio (20 preguntas)</span>
+          </span>
+        </label>
+
+        <label class="uf-option">
+          <input type="radio" name="uf" value="UF1843">
+          <span class="uf-card">
+            <strong>UF1843 — Usabilidad, Accesibilidad y Arrays</strong>
+            <span>UX/UI, Nielsen, WCAG/ARIA, responsive, jsPDF/Canvas y arrays (20 preguntas)</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="start-btn" class="btn btn--primary" type="button">Generar examen de 10 preguntas</button>
+      </div>
+    </section>
+
+    <!-- Examen activo -->
+    <section id="quiz-section" class="hidden" aria-labelledby="quiz-title">
+      <div class="quiz-header card">
+        <div>
+          <span id="quiz-mode-badge" class="badge badge--blue">Todas las UFs</span>
+          <h2 id="quiz-title">Simulacro en curso</h2>
+        </div>
+        <div class="quiz-progress">
+          <span>Respondidas: <strong id="answered-count">0</strong> / 10</span>
+        </div>
+      </div>
+
+      <form id="quiz-form" novalidate>
+        <div id="questions-container"></div>
+
+        <div id="quiz-error" class="alert alert--error hidden" role="alert"></div>
+
+        <div class="actions actions--between">
+          <button id="cancel-btn" class="btn btn--secondary" type="button">Volver al menú</button>
+          <button id="submit-btn" class="btn btn--primary" type="submit">Corregir examen</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Resultados -->
+    <section id="results-section" class="hidden" aria-labelledby="results-title">
+      <div class="card results-summary">
+        <h2 id="results-title">Resultado del simulacro</h2>
+        <div class="score-box">
+          <div class="score-number" id="score-value">0 / 10</div>
+          <div class="score-meta">
+            <span id="score-percent">0%</span>
+            <span id="score-status" class="status-pill">No superado</span>
+          </div>
+        </div>
+        <div class="actions">
+          <button id="retry-btn" class="btn btn--primary" type="button">Nuevo simulacro (misma UF)</button>
+          <button id="menu-btn" class="btn btn--secondary" type="button">Cambiar de UF / Menú</button>
+        </div>
+      </div>
+
+      <div id="mistakes-container"></div>
+    </section>
+  </main>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
